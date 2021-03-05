@@ -30,7 +30,7 @@ app.post("/",async function(req,res){
    await addToQueue(req.body as User)
    res.render("index",{title:"Add To Queue"})
 })
-userQueue.process(async function(job:Queue.Job<User>,done:any){
+userQueue.process(function(job:Queue.Job<User>,done:any){
     console.log("new job...")
    getDB().db("users").collection("users").insertOne(job.data).then(_=>{
        done(null)
