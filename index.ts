@@ -24,11 +24,11 @@ const app = Express()
 app.set("view engine","ejs")
 app.use(urlencoded())
 app.get("/",function(_,res){
-    res.render("index")
+    res.render("index",{title:"Add To Queue"})
 })
 app.post("/",async function(req,res){
    await addToQueue(req.body as User)
-   res.render("index")
+   res.render("index",{title:"Add To Queue"})
 })
 userQueue.process(async function(job:Queue.Job<User>,done:any){
     console.log("new job...")
